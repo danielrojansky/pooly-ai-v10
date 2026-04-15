@@ -1,0 +1,41 @@
+{
+  "swarmId": "swarm-mnzsyl1i",
+  "objective": "Scaffold Pooly.AI ver 10 agentic commerce demo per /Users/daniel.rojansky/pooly-ai-v10/PRD.md. Read PRD.md first. Create three App Router route groups (developer, terminal, merchant) with placeholder pages, the Cyber-Corporate dark theme in app/globals.css and app/layout.tsx (deep space black background, neon cyan #00e5ff accent, electric purple #b24bf3 accent, glassmorphism frosted-panel utility class, Inter + Fira Code fonts via next/font/google), the AutoPilotContext state machine at contexts/AutoPilotContext.tsx with steps/play/pause/resume/currentStep API, stub lib modules for circle.ts escrow.ts x402.ts db.ts guardrails.ts with typed interfaces and TODO comments, and a Drizzle schema at lib/db/schema.ts for agents, guardrails, and transactions tables. Use Neon @neondatabase/serverless not @vercel/postgres. Do NOT implement animations or real API calls yet - just scaffolding with working types. Read PRD.md for all specifics.",
+  "strategy": "development",
+  "status": "initialized",
+  "agents": 8,
+  "agentPlan": [
+    {
+      "role": "Coordinator",
+      "type": "coordinator",
+      "count": 1,
+      "purpose": "Orchestrate workflow"
+    },
+    {
+      "role": "Architect",
+      "type": "architect",
+      "count": 1,
+      "purpose": "System design"
+    },
+    {
+      "role": "Coder",
+      "type": "coder",
+      "count": 3,
+      "purpose": "Implementation"
+    },
+    {
+      "role": "Tester",
+      "type": "tester",
+      "count": 2,
+      "purpose": "Quality assurance"
+    },
+    {
+      "role": "Reviewer",
+      "type": "reviewer",
+      "count": 1,
+      "purpose": "Code review"
+    }
+  ],
+  "startedAt": "2026-04-15T08:42:42.823Z",
+  "parallel": true
+}
