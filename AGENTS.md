@@ -44,4 +44,12 @@ may differ from training data. Key changes relevant to this project:
 
 ## Build gate
 - `npm run build` must pass with zero TypeScript errors before any commit.
+
+## Versioning & releases — CONSTANT RULE
+- **Never `git push origin main` directly.** Always use a release script.
+- Regular production push (new feature, improvement): `npm run deploy` → bumps minor (0.x → 0.x+1)
+- Big change (new section, major rework): `npm run deploy:major` → bumps major (x → x+1)
+- Hotfix / docs / config only: `npm run deploy:patch` → bumps patch (0.0.x → 0.0.x+1)
+- The pre-push hook will block a bare `git push` to main if no version bump is present.
+- All release scripts run `npm run build` first — deployment never happens on a broken build.
 <!-- END:project-agent-rules -->

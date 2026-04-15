@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# pre-push hook — enforces version bump before pushing to main.
+#
+# Rule:
+#   Every push to main/origin must include a version bump in package.json.
+#   Minor change  → npm run deploy        (bumps 0.x.0 → 0.(x+1).0)
+#   Big change    → npm run deploy:major   (bumps x.0.0 → (x+1).0.0)
+#
+# If you intentionally bypass (docs-only, hotfix, etc.) run:
+#   git push --no-verify
+# and manually bump version in the next commit.
+
+set -euo pipefail
+
+REMOTE="$1"
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Only enforce on pushes to origin/main
+if [[ "$REMOTE" != "origin" ]] || [[ "$BRANCH" != "main" ]]; then
+  exit 0
+fi
+
+# Get current local version
+LOCAL_VERSION=$(node -p "require('./package.json').version")
+
+# Get the version at origin/main tip (last pushed)
+# Fetch quietly; if we can't reach remote, skip the check.
+if ! git fetch origin main --quiet 2>/dev/null; then
+  echo "⚠️  Could not reach origin — skipping version check."
+  exit 0
+fi
+
+REMOTE_VERSION=$(git show origin/main:package.json 2>/dev/null | node -p "JSON.parse(require('fs').readFileSync('/dev/stdin','utf8')).version" 2>/dev/null || echo "0.0.0")
+
+if [[ "$LOCAL_VERSION" == "$REMOTE_VERSION" ]]; then
+  echo ""
+  echo "╔══════════════════════════════════════════════════════════════════╗"
+  echo "║  🚫  VERSION NOT BUMPED                                         ║"
+  echo "║                                                                  ║"
+  echo "║  Current version ($LOCAL_VERSION) matches origin/main.           ║"
+  echo "║                                                                  ║"
+  echo "║  For a regular production push (minor change):                   ║"
+  echo "║    npm run deploy                                                ║"
+  echo "║                                                                  ║"
+  echo "║  For a big change (new feature / breaking):                      ║"
+  echo "║    npm run deploy:major                                          ║"
+  echo "║                                                                  ║"
+  echo "║  To bypass (docs-only / hotfix):                                 ║"
+  echo "║    git push --no-verify                                          ║"
+  echo "╚══════════════════════════════════════════════════════════════════╝"
+  echo ""
+  exit 1
+fi
+
+echo "✅  Version bump detected: $REMOTE_VERSION → $LOCAL_VERSION"
+exit 0

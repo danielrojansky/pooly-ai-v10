@@ -51,6 +51,19 @@ npm run build   # production build (must pass before pushing)
 npm run lint    # eslint
 ```
 
-## Before pushing
+## Versioning & deployment rule (enforced by pre-push hook)
 
-Always run `npm run build` and confirm it passes with zero TypeScript errors. The Vercel deployment will fail if it doesn't pass locally — Vercel uses the same `next build` command.
+**Every production push must include a version bump.** Use the release scripts — they build,
+bump, commit, tag, push to GitHub, and deploy to Vercel in one step:
+
+| Change type | Command | Example |
+|---|---|---|
+| Regular change (new feature, improvement) | `npm run deploy` | `0.2.0 → 0.3.0` |
+| Big change (new section, major rework) | `npm run deploy:major` | `0.2.0 → 1.0.0` |
+| Hotfix / docs-only | `npm run deploy:patch` | `0.2.0 → 0.2.1` |
+
+The pre-push hook (`.githooks/pre-push`) blocks pushes to `main` if the version in
+`package.json` matches the remote. To bypass for an emergency: `git push --no-verify`.
+
+**Never** manually bump the version without using a release script — the script ensures
+the build passes, the tag is created, and Vercel is deployed atomically.

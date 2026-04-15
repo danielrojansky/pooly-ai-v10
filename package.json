@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prepare": "git config core.hooksPath .githooks || true",
+    "deploy": "bash scripts/release.sh minor",
+    "deploy:major": "bash scripts/release.sh major",
+    "deploy:patch": "bash scripts/release.sh patch"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.0",
