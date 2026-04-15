@@ -138,16 +138,16 @@ export function FlowView() {
   }, [running]);
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-12">
+    <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
       {/* Header */}
-      <div className="mb-10">
+      <div className="mb-8 sm:mb-10">
         <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-[#0099cc]/20 bg-[#0099cc]/5 px-3 py-1">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#0099cc]" />
           <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#0099cc]">
             End-to-End Flow
           </span>
         </div>
-        <h1 className="text-4xl font-semibold tracking-tight text-slate-900">
+        <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
           Agentic Payments, start to finish
         </h1>
         <p className="mt-2 max-w-2xl text-slate-500">
@@ -157,16 +157,16 @@ export function FlowView() {
       </div>
 
       {/* Step progress */}
-      <div className="mb-10 flex items-center gap-0">
+      <div className="mb-8 flex items-center gap-0 sm:mb-10">
         {STEPS.map((step, i) => (
           <div key={step.id} className="flex flex-1 items-center">
             <button
               type="button"
               onClick={() => setCurrentStep(step.id)}
-              className="flex flex-col items-center gap-1.5 transition-opacity"
+              className="flex flex-col items-center gap-1 transition-opacity sm:gap-1.5"
             >
               <div
-                className={`flex h-10 w-10 items-center justify-center rounded-full border-2 text-lg transition-all ${
+                className={`flex h-8 w-8 items-center justify-center rounded-full border-2 text-sm transition-all sm:h-10 sm:w-10 sm:text-lg ${
                   completedSteps.has(step.id)
                     ? "border-emerald-400 bg-emerald-50 text-emerald-600"
                     : currentStep === step.id
@@ -178,7 +178,7 @@ export function FlowView() {
                 {completedSteps.has(step.id) ? "✓" : step.icon}
               </div>
               <span
-                className={`text-center font-mono text-[9px] uppercase tracking-widest ${
+                className={`hidden text-center font-mono text-[9px] uppercase tracking-widest sm:block ${
                   currentStep === step.id ? "font-bold text-slate-900" : "text-slate-400"
                 }`}
               >
@@ -187,7 +187,7 @@ export function FlowView() {
             </button>
             {i < STEPS.length - 1 && (
               <div
-                className={`mx-1 h-[2px] flex-1 rounded-full transition-all duration-500 ${
+                className={`mx-0.5 h-[2px] flex-1 rounded-full transition-all duration-500 sm:mx-1 ${
                   completedSteps.has(step.id) ? "bg-emerald-300" : "bg-slate-200"
                 }`}
               />
@@ -205,7 +205,7 @@ export function FlowView() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="glass-panel p-8"
+            className="glass-panel p-4 sm:p-8"
           >
             <StepHeader step={1} icon="💳" color="#0099cc" title="Create Agent Wallet" />
             <p className="mb-6 text-slate-500">
@@ -241,7 +241,7 @@ export function FlowView() {
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-6 grid grid-cols-3 gap-4"
+                  className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4"
                 >
                   <WalletCard label="Identity" value={`${wallet.domain}.agent`} color="text-[#0099cc]" />
                   <WalletCard label="Balance" value={`${wallet.balance} USDC`} color="text-emerald-600" />
@@ -265,7 +265,7 @@ export function FlowView() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="glass-panel p-8"
+            className="glass-panel p-4 sm:p-8"
           >
             <StepHeader step={2} icon="🛡️" color="#7c3aed" title="Set Spending Guardrails" />
             <p className="mb-6 text-slate-500">
@@ -326,7 +326,7 @@ export function FlowView() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="glass-panel p-8"
+            className="glass-panel p-4 sm:p-8"
           >
             <StepHeader step={3} icon="🤖" color="#d97706" title="Submit Agent Intent" />
             <p className="mb-6 text-slate-500">
@@ -372,7 +372,7 @@ export function FlowView() {
             exit={{ opacity: 0, y: -12 }}
             className="glass-panel overflow-hidden"
           >
-            <div className="border-b border-slate-100 p-8">
+            <div className="border-b border-slate-100 p-4 sm:p-8">
               <StepHeader step={4} icon="🔒" color="#dc2626" title="Agent Handles the 402" />
               <p className="text-slate-500">
                 Apify responds with HTTP 402. Pooly intercepts, validates guardrails, locks
@@ -382,7 +382,7 @@ export function FlowView() {
             </div>
 
             {/* Terminal */}
-            <div className="terminal-panel min-h-[280px] rounded-none p-6">
+            <div className="terminal-panel min-h-[220px] rounded-none p-4 sm:min-h-[280px] sm:p-6">
               <div className="mb-4 flex items-center gap-2">
                 <div className="h-3 w-3 rounded-full bg-red-500/70" />
                 <div className="h-3 w-3 rounded-full bg-yellow-500/70" />
@@ -417,8 +417,8 @@ export function FlowView() {
             </div>
 
             {/* Escrow status bar */}
-            <div className="border-t border-slate-100 p-6">
-              <div className="flex items-center gap-6">
+            <div className="border-t border-slate-100 p-4 sm:p-6">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-6">
                 <EscrowBadge locked={escrowLocked} released={escrowReleased} />
                 {escrowReleased && (
                   <motion.p
@@ -441,7 +441,7 @@ export function FlowView() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="glass-panel p-8"
+            className="glass-panel p-4 sm:p-8"
           >
             <StepHeader step={5} icon="✅" color="#059669" title="Result Delivered" />
             <p className="mb-6 text-slate-500">

@@ -15,8 +15,10 @@ const firaCode = Fira_Code({
   display: "swap",
 });
 
+const ver = process.env.NEXT_PUBLIC_APP_VERSION ?? "dev";
+
 export const metadata: Metadata = {
-  title: "Pooly.AI ver 10 — Agentic Payments",
+  title: `Pooly.AI ver 10 · v${ver} — Agentic Payments`,
   description:
     "The orchestration and trust layer for the trillion-dollar agent economy. x402 + ANS + Circle + ERC-8183.",
 };
