@@ -74,16 +74,16 @@ export function DeveloperView() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-12">
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
       {/* Header */}
-      <div className="mb-10">
+      <div className="mb-8 sm:mb-10">
         <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-[#0099cc]/20 bg-[#0099cc]/5 px-3 py-1">
           <span className="h-1.5 w-1.5 rounded-full bg-[#0099cc]" />
           <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#0099cc]">
             Act I · Orchestration
           </span>
         </div>
-        <h1 className="text-4xl font-semibold tracking-tight text-slate-900">
+        <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
           Developer Dashboard
         </h1>
         <p className="mt-2 max-w-2xl text-slate-500">
@@ -92,9 +92,9 @@ export function DeveloperView() {
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
         {/* ── Panel 1: ANS Identity Minting ── */}
-        <section id="panel-identity" className="glass-panel p-6">
+        <section id="panel-identity" className="glass-panel p-4 sm:p-6">
           <div className="flex items-start justify-between">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
@@ -167,7 +167,7 @@ export function DeveloperView() {
         </section>
 
         {/* ── Panel 2: Circle Fiat On-Ramp ── */}
-        <section id="panel-topup" className="glass-panel p-6">
+        <section id="panel-topup" className="glass-panel p-4 sm:p-6">
           <div className="flex items-start justify-between">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
@@ -260,7 +260,7 @@ export function DeveloperView() {
         </section>
 
         {/* ── Panel 3: Guardrails ── */}
-        <section id="panel-guardrails" className="glass-panel p-6">
+        <section id="panel-guardrails" className="glass-panel p-4 sm:p-6">
           <div className="flex items-start justify-between">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-widest text-slate-400">

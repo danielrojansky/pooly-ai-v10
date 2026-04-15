@@ -29,15 +29,15 @@ const ACTS = [
 
 export default function Home() {
   return (
-    <div className="relative mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-6 py-20">
-      <div className="mb-16 text-center">
+    <div className="relative mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-4 py-12 sm:px-6 sm:py-20">
+      <div className="mb-10 text-center sm:mb-16">
         <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#0099cc]/20 bg-[#0099cc]/5 px-4 py-1.5">
           <span className="h-1.5 w-1.5 rounded-full bg-[#0099cc]" />
           <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#0099cc]">
-            Pooly.AI · ver 10
+            Pooly.AI · ver 10 · v{process.env.NEXT_PUBLIC_APP_VERSION ?? "dev"}
           </span>
         </div>
-        <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-900 md:text-6xl">
+        <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
           Agentic payments,{" "}
           <span className="text-glow-purple">fully autonomous</span>
         </h1>
@@ -48,12 +48,12 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="grid w-full gap-5 md:grid-cols-3">
+      <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-3">
         {ACTS.map((act) => (
           <Link
             key={act.href}
             href={act.href}
-            className={`glass-panel glass-panel-hover group relative overflow-hidden p-8 ${act.borderColor}`}
+            className={`glass-panel glass-panel-hover group relative overflow-hidden p-6 sm:p-8 ${act.borderColor}`}
           >
             <p className={`font-mono text-[11px] uppercase tracking-[0.25em] ${act.tagColor}`}>
               {act.tag}

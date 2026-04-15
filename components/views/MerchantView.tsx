@@ -112,9 +112,9 @@ export function MerchantView() {
     .toFixed(2);
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-12">
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-6 sm:mb-8">
         <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
           <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-emerald-600">
@@ -123,7 +123,7 @@ export function MerchantView() {
         </div>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-900">
+            <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
               Merchant Portal
             </h1>
             <p className="mt-2 max-w-xl text-slate-500">
@@ -136,7 +136,7 @@ export function MerchantView() {
             type="button"
             onClick={() => setWithdrawModal(true)}
             disabled={withdrawn}
-            className="relative rounded-2xl bg-emerald-500 px-8 py-4 text-base font-bold text-white shadow-lg transition-all hover:bg-emerald-600 hover:shadow-emerald-200 hover:shadow-xl disabled:opacity-60"
+            className="relative w-full rounded-2xl bg-emerald-500 px-8 py-4 text-base font-bold text-white shadow-lg transition-all hover:bg-emerald-600 hover:shadow-emerald-200 hover:shadow-xl disabled:opacity-60 sm:w-auto"
           >
             {!withdrawn && (
               <motion.span
@@ -153,7 +153,7 @@ export function MerchantView() {
       </div>
 
       {/* Stats row */}
-      <div className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="mb-4 grid grid-cols-2 gap-3 sm:mb-6 sm:gap-4 md:grid-cols-4">
         {[
           { label: "Total Revenue", value: "$" + (Number(totalAgentRevenue) + 9.98).toFixed(2), sub: "today" },
           { label: "Agent Revenue", value: "$" + totalAgentRevenue, sub: "x402 protocol", highlight: true },
@@ -179,9 +179,9 @@ export function MerchantView() {
         ))}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
         {/* ── Recharts traffic graph ── */}
-        <section id="panel-traffic" className="glass-panel p-6">
+        <section id="panel-traffic" className="glass-panel p-4 sm:p-6">
           <h2 className="mb-4 font-mono text-[10px] uppercase tracking-widest text-slate-400">
             Agentic Traffic · Revenue (USDC)
           </h2>
@@ -230,7 +230,7 @@ export function MerchantView() {
         </section>
 
         {/* ── Revenue table ── */}
-        <section id="panel-revenue" className="glass-panel overflow-hidden p-6">
+        <section id="panel-revenue" className="glass-panel overflow-hidden p-4 sm:p-6">
           <h2 className="mb-4 font-mono text-[10px] uppercase tracking-widest text-slate-400">
             Line Items
           </h2>
@@ -261,7 +261,7 @@ export function MerchantView() {
                     transition={{ delay: i * 0.06 }}
                   >
                     <td className="py-2.5 font-mono text-[11px] text-slate-400">{tx.ts}</td>
-                    <td className="py-2.5 font-mono text-[11px] text-slate-700">
+                    <td className="max-w-[120px] truncate py-2.5 font-mono text-[11px] text-slate-700 sm:max-w-none">
                       {tx.buyer}
                     </td>
                     <td className="py-2.5 text-right font-mono text-[11px] font-semibold text-slate-900">
@@ -303,7 +303,7 @@ export function MerchantView() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-2xl"
+              className="mx-4 w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl sm:mx-0 sm:p-8"
             >
               {!withdrawn ? (
                 <>

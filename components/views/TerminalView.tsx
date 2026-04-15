@@ -138,18 +138,18 @@ export function TerminalView() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-12">
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
       <EscrowPadlock state={padlock} />
 
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-6 sm:mb-8">
         <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-[#7c3aed]/20 bg-violet-50 px-3 py-1">
           <span className="h-1.5 w-1.5 rounded-full bg-[#7c3aed]" />
           <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#7c3aed]">
             Act II · Showtime
           </span>
         </div>
-        <h1 className="text-4xl font-semibold tracking-tight text-slate-900">
+        <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
           Execution Terminal
         </h1>
         <p className="mt-2 max-w-2xl text-slate-500">
@@ -158,10 +158,10 @@ export function TerminalView() {
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[360px_1fr]">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-[360px_1fr]">
         {/* ── Left: Intent Pane ── */}
         <div className="flex flex-col gap-4">
-          <section id="panel-intent" className="glass-panel p-5">
+          <section id="panel-intent" className="glass-panel p-4 sm:p-5">
             <h2 className="mb-3 font-mono text-[10px] uppercase tracking-widest text-slate-400">
               Agent Intent
             </h2>
@@ -208,7 +208,7 @@ export function TerminalView() {
           </section>
 
           {/* Protocol legend */}
-          <section className="glass-panel p-5">
+          <section className="glass-panel p-4 sm:p-5">
             <h2 className="mb-3 font-mono text-[10px] uppercase tracking-widest text-slate-400">
               Protocol Stack
             </h2>
@@ -232,7 +232,7 @@ export function TerminalView() {
         </div>
 
         {/* ── Right: Live Ledger Terminal ── */}
-        <section id="panel-ledger" className="terminal-panel flex min-h-[520px] flex-col p-6">
+        <section id="panel-ledger" className="terminal-panel flex min-h-[340px] flex-col p-4 sm:min-h-[520px] sm:p-6">
           <div className="mb-4 flex items-center gap-2">
             <div className="h-3 w-3 rounded-full bg-red-500/70" />
             <div className="h-3 w-3 rounded-full bg-yellow-500/70" />
@@ -265,11 +265,11 @@ export function TerminalView() {
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.2 }}
-                    className={`flex gap-2 font-mono text-sm ${entry.color}`}
+                    className={`flex gap-2 font-mono text-xs sm:text-sm ${entry.color}`}
                   >
-                    <span className="flex-none text-slate-500">{entry.ts}</span>
+                    <span className="hidden flex-none text-slate-500 sm:inline">{entry.ts}</span>
                     <span className="flex-none">{entry.icon}</span>
-                    <span>{entry.text}</span>
+                    <span className="break-all">{entry.text}</span>
                   </motion.div>
                 ))}
               </AnimatePresence>
@@ -303,16 +303,17 @@ export function TerminalView() {
                 transition={{ duration: 0.4 }}
                 className="mt-4 overflow-hidden rounded-xl border border-white/10"
               >
+                <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-white/10 bg-white/5">
-                      <th className="px-4 py-2 text-left font-mono text-[10px] uppercase tracking-widest text-slate-400">
+                      <th className="px-3 py-2 text-left font-mono text-[10px] uppercase tracking-widest text-slate-400 sm:px-4">
                         Name
                       </th>
-                      <th className="px-4 py-2 text-left font-mono text-[10px] uppercase tracking-widest text-slate-400">
+                      <th className="hidden px-3 py-2 text-left font-mono text-[10px] uppercase tracking-widest text-slate-400 sm:table-cell sm:px-4">
                         Title
                       </th>
-                      <th className="px-4 py-2 text-left font-mono text-[10px] uppercase tracking-widest text-slate-400">
+                      <th className="px-3 py-2 text-left font-mono text-[10px] uppercase tracking-widest text-slate-400 sm:px-4">
                         Company
                       </th>
                     </tr>
@@ -326,13 +327,14 @@ export function TerminalView() {
                         transition={{ delay: i * 0.08 }}
                         className="border-b border-white/5 last:border-0"
                       >
-                        <td className="px-4 py-2 font-mono text-xs text-white">{row.name}</td>
-                        <td className="px-4 py-2 font-mono text-xs text-slate-300">{row.title}</td>
-                        <td className="px-4 py-2 font-mono text-xs text-[#0099cc]">{row.company}</td>
+                        <td className="px-3 py-2 font-mono text-xs text-white sm:px-4">{row.name}</td>
+                        <td className="hidden px-3 py-2 font-mono text-xs text-slate-300 sm:table-cell sm:px-4">{row.title}</td>
+                        <td className="px-3 py-2 font-mono text-xs text-[#0099cc] sm:px-4">{row.company}</td>
                       </motion.tr>
                     ))}
                   </tbody>
                 </table>
+                </div>
                 <div className="border-t border-white/10 bg-white/5 px-4 py-2">
                   <p className="font-mono text-[10px] text-emerald-400">
                     ✓ 5 records retrieved · ZK proof verified · Cost: 0.50 USDC
