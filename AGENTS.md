@@ -1,5 +1,47 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+@CLAUDE.md
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+<!-- BEGIN:nextjs-agent-rules -->
+# Next.js 16 — breaking changes from prior versions
+
+This project uses Next.js 16.2.3 with Turbopack. APIs, conventions, and file structure
+may differ from training data. Key changes relevant to this project:
+
+- App Router only — no `pages/` directory
+- `"use client"` required for any component using hooks, event handlers, or browser APIs
+- Server Components are the default — keep them for static/data-fetching work
+- Route handlers at `app/api/*/route.ts` replace `pages/api/*.ts`
+- `import "server-only"` prevents a module from being imported in client components
+- `next/font/google` is the correct font import path
+- Metadata is exported as `export const metadata` or `export async function generateMetadata`
 <!-- END:nextjs-agent-rules -->
+
+<!-- BEGIN:project-agent-rules -->
+# Project-specific rules for agents
+
+## Scope
+- **Do not implement Phase 3** (real Circle/Neon/blockchain integrations) unless the user
+  explicitly says "implement Phase 3" and has confirmed credentials are in `.env.local`.
+- The stubs in `lib/circle.ts`, `lib/escrow.ts` throw intentionally. Leave them as-is.
+
+## Theme
+- Light theme only. Never add `dark:` variants or toggle dark mode.
+- The `terminal-panel` CSS class is intentionally dark — it's a design element, not a theme.
+
+## Copy
+- Do not use "Stripe for Agentic Commerce" anywhere. The tagline is "Agentic payments".
+
+## Animations
+- All animations use Framer Motion (`framer-motion` package, `motion.*` components).
+- Do not introduce CSS-only animations for complex sequences — use `motion.div` with variants.
+
+## State
+- Demo automation state lives in `AutoPilotContext`. Use `useAutoPilot()` to read/write it.
+- Do not introduce a new global state library (Redux, Zustand, etc.).
+
+## Database
+- Use `@neondatabase/serverless` with Drizzle ORM. Never use `@vercel/postgres` (deprecated).
+- `db` in `lib/db/index.ts` may be `null` when `DATABASE_URL` is unset — always null-check.
+
+## Build gate
+- `npm run build` must pass with zero TypeScript errors before any commit.
+<!-- END:project-agent-rules -->
